@@ -8,6 +8,8 @@
 // +----------------------------------------------------------------------
 
 namespace app\common\controller;
+use think\Db;
+use think\Model;
 
 class Base extends \think\Controller {
 
@@ -15,19 +17,28 @@ class Base extends \think\Controller {
 	protected $request;
 	protected $module;
 	protected $controller;
-	protected $action;
+	protected $action
+    ;
 
 	public function _initialize() {
-
 		/* 读取数据库中的配置 */
+        cache('db_config_data',null);
 		$config = cache('db_config_data');
 		if (!$config) {
-			$config = model('Config')->lists();
-			cache('db_config_data', $config);
+		    $model=model('Configs');
+            $list = $model
+                ->select();
+            foreach ($list as $item){
+                $arr[$item['name']]=$item['value'];
+            }
+			cache('db_config_data', $arr);
+            $config=cache('db_config_data');
 		}
-		config($config);
+
+
+        $this->assign(config($config));
 		//获取request信息
-		$this->requestInfo();
+		//$this->requestInfo();
 	}
 
 	public function execute($mc = null, $op = '', $ac = null) {
@@ -46,7 +57,6 @@ class Base extends \think\Controller {
 			$this->error('没有指定插件名称，控制器或操作！');
 		}
 	}
-
 	/**
 	 * 解析数据库语句函数
 	 * @param string $sql  sql语句   带默认前缀的
@@ -83,7 +93,6 @@ class Base extends \think\Controller {
 		}
 		return $ret;
 	}
-
 	protected function setSeo($title = '', $keywords = '', $description = '') {
 		$seo = array(
 			'title'       => $title,
@@ -106,7 +115,6 @@ class Base extends \think\Controller {
 		);
 		$this->assign($data);
 	}
-
 	/**
 	 * 验证码
 	 * @param  integer $id 验证码ID
@@ -116,7 +124,6 @@ class Base extends \think\Controller {
 		$verify = new \org\Verify(array('length' => 4));
 		$verify->entry($id);
 	}
-
 	/**
 	 * 检测验证码
 	 * @param  integer $id 验证码ID
@@ -134,7 +141,6 @@ class Base extends \think\Controller {
 			return $this->error("验证码为空！", "");
 		}
 	}
-
 	//request信息
 	protected function requestInfo() {
 		$this->param = $this->request->param();
@@ -147,7 +153,6 @@ class Base extends \think\Controller {
 		$this->assign('request', $this->request);
 		$this->assign('param', $this->param);
 	}
-
 	/**
 	 * 获取单个参数的数组形式
 	 */
@@ -158,7 +163,6 @@ class Base extends \think\Controller {
 			return array();
 		}
 	}
-
 	/**
 	 * 是否为手机访问
 	 * @return boolean [description]

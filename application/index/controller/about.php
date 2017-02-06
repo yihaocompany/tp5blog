@@ -2,7 +2,7 @@
 namespace app\index\controller;
 
 
-class Index extends  \app\common\controller\Base
+class About extends  \app\common\controller\Base
 {
     public function _initialize()
     {

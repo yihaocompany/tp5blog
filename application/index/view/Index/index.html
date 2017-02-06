@@ -1,55 +1,5 @@
 {extend name="public/base"/}
 {block name="body"}
-<div class="back">
-    <img src="/static/images/back.png" alt="">
-</div>
-<div class="container">
-    <div class="main-top">
-        <div class="main">
-            <div class="header">
-                <div class="header-top">
-                    <div class="header-in">
-                        <div class="logo">
-                            <a href="index.html"><img src="/static/images/logo.png" alt="" ></a>
-                        </div>
-                        <div class="search">
-                            <form>
-                                <input type="text" value="" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '';}" >
-                                <input type="submit" value="SEARCH">
-                            </form>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-
-                    <div class="clearfix"> </div>
-                </div>
-                <!---->
-                <div class="header-bottom">
-                    <div class="navigation">
-                        <div>
-                            <label class="mobile_menu" for="mobile_menu">
-                                <span>Menu</span>
-                            </label>
-                            <input id="mobile_menu" type="checkbox">
-                            <ul class="nav">
-                                <li><a class="color1" href="index.html">Home</a></li>
-                                <li><a href="cinema.html" class="color2">cinema</a></li>
-                                <li><a href="magazine.html" class="color3">Magazine</a></li>
-                                <li class="dropdown"><a href="#" class="color4">Topmenu<span> </span></a>
-                                    <ul>
-                                        <li><a href="cinema.html">cinema</a></li>
-                                        <li><a href="magazine.html">Magazine</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="archives.html" class="color5">Archives</a></li>
-                                <li><a href="contact.html" class="color6">Contact us</a></li>
-                                <div class="clearfix"></div>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!---->
             <div class="gallery">
                 <h1>Top Stories</h1>
                 <!-- requried-jsfiles-for owl -->
@@ -108,9 +58,6 @@
                 </div>
                 <!--//sreen-gallery-cursual---->
             </div>
-
-            <!---->
-
             <div class="content">
                 <div class="col-md-8 content-top">
                     <div class="number">
@@ -455,35 +402,16 @@
                             <a href="#" class="bun">Portman</a>
                             <a href="#" class="live">Nicole </a>
                             <a href="#" class="eva">Kidman Penelope</a>
-                            <!---
                             <a href="#" class="live">Cruz Reese Witherspoon Reklam</a>
                             <a href="#" class="lop"> Rihanna</a>
                             <a href="#" class="live">Robert Pattin </a>
                             <a href="#" class="bun">Son Sarah</a>
                             <a href="#" class="live">Jessica </a>
                             <a href="#" class="jol">Parker Scar </a>
-                            -->
                         </p>
                     </div>
                     <!---->
                 </div>
                 <div class="clearfix"></div>
             </div>
-        </div>
-        <i class="line"> </i>
-        <i class="line-in"> </i>
-        <i class="line-in line-in1"> </i>
-        <i class="line-in line-in2"> </i>
-    </div>
-    <p class="footer-class">Copyright &copy; 2015.Company name All rights reserved.
-    </p>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $().UItoTop({ easingType: 'easeOutQuart' });
-
-        });
-    </script>
-    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-
-</div>
 {/block}

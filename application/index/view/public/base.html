@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
-    <link href="static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <title>{$site_title}</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--theme-style-->
-    <link href="static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Magblog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <meta name="keywords" content="{$site_keywords}" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--fonts-->
     <link href='http://fonts.useso.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -43,7 +42,76 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     {block name="style"}{/block}
 </head>
 <body>
-{block name="body"}{/block}
+<div class="back">
+    <img src="/static/images/back.png" alt="">
+</div>
+<div class="container">
+    <div class="main-top">
+        <div class="main">
+            <div class="header">
+                <div class="header-top">
+                    <div class="header-in">
+                        <div class="logo">
+                            <a href="index.html"><img src="/static/images/logo.png" alt="" ></a>
+                        </div>
+                        <div class="search">
+                            <form>
+                                <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                                <input type="submit" value="SEARCH">
+                            </form>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="header-top-on">
+                        <ul class="social-in">
+                            <li><a href="#"><i> </i></a></li>
+                            <li><a href="#"><i class="facebook"> </i></a></li>
+                            <li><a href="#"><i class="tin"> </i></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!---->
+                <div class="header-bottom">
+                    <div class="navigation">
+                        <div>
+                            <label class="mobile_menu" for="mobile_menu">
+                                <span>Menu</span>
+                            </label>
+                            <input id="mobile_menu" type="checkbox">
+                            <ul class="nav">
+                                <li><a class="color1" href="index.html">Home</a></li>
+                                <li><a href="cinema.html" class="color2">cinema</a></li>
+                                <li><a href="magazine.html" class="color3">Magazine</a></li>
+                                <li class="dropdown"><a href="#" class="color4">Topmenu<span> </span></a>
+                                    <ul>
+                                        <li><a href="cinema.html">cinema</a></li>
+                                        <li><a href="magazine.html">Magazine</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="archives.html" class="color5">Archives</a></li>
+                                <li><a href="contact.html" class="color6">Contact us</a></li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {block name="body"}{/block}
+        </div>
+        <i class="line"> </i>
+        <i class="line-in"> </i>
+        <i class="line-in line-in1"> </i>
+        <i class="line-in line-in2"> </i>
+    </div>
+    <p class="footer-class">Copyright &copy; 2015.{$author} All rights reserved.</p>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</div>
 {block name="script"}{/block}
 </body>
 </html>

@@ -1,4 +1,4 @@
-基于tp5开发blog已引入了bootstrap框加 
+基于tp5开发blog已引入了bootstrap框架
 ===============
 
 [![Total Downloads](https://poser.pugx.org/topthink/think/downloads)](https://packagist.org/packages/topthink/think)
@@ -7,7 +7,7 @@
 [![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think)
 
 ThinkPHP5在保持快速开发和大道至简的核心理念不变的同时，PHP版本要求提升到5.4，对已有的CBD模式做了更深的强化，优化核心，减少依赖，基于全新的架构思想和命名空间实现，是ThinkPHP突破原有框架思路的颠覆之作，其主要特性包括：
- + 基于tp5开发blog已引入了bootstrap框加 
+ + 基于tp5开发blog已引入了bootstrap框架 
  + back目录中存放网上下载的模板
 
 
