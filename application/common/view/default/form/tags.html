@@ -1,0 +1,6 @@
+{if empty($value)}
+<input type="text" value="" id="{$field}" name="{$field}" data-role="tagsinput" />
+{else/}
+<?php $value=explode(',',$value);?>
+<input type="text" value="{$value|implode=',',###}" id="{$field}" name="{$field}" data-role="tagsinput" />
+{/if}

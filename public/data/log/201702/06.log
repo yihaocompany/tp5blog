@@ -1,0 +1,55 @@
+[ 2017-02-06T00:30:17+08:00 ] 192.168.33.10 192.168.33.1 GET /
+[ log ] tp5.com/ [运行时间：0.232216s][吞吐率：4.31req/s] [内存消耗：293.08kb] [文件加载：37]
+[ info ] [ LANG ] /data/www/tp5blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tp5.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+  'accept-language' => 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ /data/www/tp5blog/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /data/www/tp5blog/public/../application/index/view/index/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
+[ 2017-02-06T00:30:18+08:00 ] 192.168.33.10 192.168.33.1 GET /static/css/AjaxLoader.gif
+[ log ] tp5.com/static/css/AjaxLoader.gif [运行时间：0.077476s][吞吐率：12.91req/s] [内存消耗：128.20kb] [文件加载：30]
+[ info ] [ LANG ] /data/www/tp5blog/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'css',
+    2 => 'AjaxLoader.gif',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'tp5.com',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0',
+  'accept' => '*/*',
+  'accept-language' => 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://tp5.com/static/css/owl.carousel.css',
+  'connection' => 'keep-alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+
+---------------------------------------------------------------
