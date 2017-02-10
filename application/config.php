@@ -228,7 +228,7 @@ return [
         // 是否使用 setcookie
         'setcookie' => true,
     ],
-
+/*
     'auth'    => [
         // 权限开关
         'auth_on'           => 1,
@@ -242,7 +242,7 @@ return [
         'auth_rule'         => 'auth_rule',
         // 用户信息不带前缀表
         'auth_user'         => 'admin_user',
-    ],
+    ],*/
 
 
 

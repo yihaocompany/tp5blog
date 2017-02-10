@@ -1,9 +1,7 @@
 <?php
 namespace app\adminstation\controller;
 
-use app\common\model\Blogtype;
-use think\Db;
-use think\Model;
+use think\Cookie;
 class Index extends  \app\common\controller\Base
 {
     public function _initialize(){
@@ -12,20 +10,33 @@ class Index extends  \app\common\controller\Base
 
 
     public function index() {
-        if(isset($_POST['mysubmit'])){
-            $code="";
-            if(isset($_POST['code'])){
-                $code=$_POST['code'];
-            }
-            if($_POST['mysubmit']=='登 录'){
-                if(!captcha_check($code)){
-                    //验证失败
-                    echo 'fail;';
-                    exit;
-                };
+            if(input('post.mysubmit')=='登 录'){
 
+                $code=input('post.code');
+                if(!captcha_check($code,'admin')){
+                    //验证失败
+                   $re= array('r'=>1,'message'=>'验证码失改');
+                    exit(json_encode($re));
+                }else{
+                    $user['username']=  input('post.user');
+                    $pass=  input('post.pass');
+                    $model=model('User');
+                    $list = $model->where($user)->find();
+                    if(!$list){
+                        $re=array('r'=>2,'message'=>'无此管理员或密码错');
+                    }else{
+                        if(md5($pass)!=$list['password']){
+                            $re=array('r'=>2,'message'=>'无此管理员或密码错');
+                        }else{
+                            session('username',$user);
+                            session('date',time());
+                            $re=array('r'=>100,'message'=>'登陆中......');
+                        }
+                    }
+                    exit(json_encode($re));
+
+                }
             }
-        }
 
 
 

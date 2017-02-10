@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Le styles -->
-    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
-
+    <link rel="stylesheet" href="//cdn.bootcss.com/zui/1.5.0/css/zui.min.css">
+    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
     <!--  <link rel="stylesheet" href="/static/admin/css/style.css"> -->
     <link rel="stylesheet" href="/static/admin/css/loader-style.css">
     <link rel="stylesheet" href="/static/admin/css/bootstrap.css">
     <link rel="stylesheet" href="/static/admin/css/signin.css">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://ajax.useso.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- Fav and touch icons -->
     <link rel="shortcut icon" href="/static/admin/ico/minus.png">
@@ -43,12 +43,12 @@
                             <tr><td>   <label for="inputUsernameEmail">用户名</label></td></tr>
                             <tr><td>   <input type="text" id="inputUsernameEmail" name="user" class="form-control"></td></tr>
                             <tr><td>   <label for="inputPassword">密码</label></td></tr>
-                            <tr><td>   <input type="text" id="inputPassword" name='pass' class="form-control"></td></tr>
+                            <tr><td>   <input type="password" id="inputPassword" name='pass' class="form-control"></td></tr>
                             <tr><td>   <label for="inputPassword">验证</label></td></tr>
                             <tr><td>   <input type="text" id="code" name='code' class="form-control"></td></tr>
-                            <tr><td align="right"> <img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src+'?'+Math.random()" /></td></tr>
+                            <tr><td align="right"> <img  src="{:captcha_src('admin')}"  id='verfy_code' alt="验证码" onclick="this.src=this.src+'?'+Math.random()" /></td></tr>
                         </table>
-                        <input class="btn btn btn-primary pull-right" name="mysubmit" type="submit" value="登 录">
+                        <input class="btn btn btn-primary pull-right" name="mysubmit" id="mysubmit" type="button" value="登 录">
                         </input>
                     </form>
 
@@ -75,53 +75,49 @@
 <script type="text/javascript" src="/static/admin/js/app.js"></script>
 <script type="text/javascript" src="/static/admin/js/load.js"></script>
 <script type="text/javascript" src="/static/admin/js/main.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
-<script type="text/javascript" src="/static/admin/js/map/gmap3.js"></script>
+<script type="text/javascript" src="/static/js/zui.js"></script>
 <script type="text/javascript">
-    $(function() {
-        $("#test1").gmap3({
-            marker: {
-                latLng: [-7.782893, 110.402645],
-                options: {
-                    draggable: true
-                },
-                events: {
-                    dragend: function(marker) {
-                        $(this).gmap3({
-                            getaddress: {
-                                latLng: marker.getPosition(),
-                                callback: function(results) {
-                                    var map = $(this).gmap3("get"),
-                                        infowindow = $(this).gmap3({
-                                            get: "infowindow"
-                                        }),
-                                        content = results && results[1] ? results && results[1].formatted_address : "no address";
-                                    if (infowindow) {
-                                        infowindow.open(map, marker);
-                                        infowindow.setContent(content);
-                                    } else {
-                                        $(this).gmap3({
-                                            infowindow: {
-                                                anchor: marker,
-                                                options: {
-                                                    content: content
-                                                }
-                                            }
-                                        });
-                                    }
-                                }
-                            }
-                        });
+    $(function(){
+        if( $.cookie('s')>=4){
+            new $.zui.Messager('登陆失败超过3次', {
+                icon: 'heart',
+                placement: 'center' // 定义显示位置
+            }).show();
+            $('#mysubmit').attr('disabled','true');
+
+        }
+        $('#mysubmit').bind('click',function () {
+            $.post("{:url('adminstation/index/index')}",{'mysubmit':'登 录','user':$('#inputUsernameEmail').val(),'pass':$('#inputPassword').val(),'code':$('#code').val()},function(data){
+                if(data.r=='2'){
+                    if($.cookie('s')) {
+                        if( $.cookie('s')>=4){
+                            new $.zui.Messager('登陆失败超过3次', {
+                                icon: 'heart',
+                                placement: 'center' // 定义显示位置
+                            }).show();
+                            $('#mysubmit').attr('disabled','true');
+                            return;
+                        }
+                        var i=   $.cookie('s')+1;
+                        $.cookie('s', i);
+                    }else{
+                        var date = new Date();
+                        date.setTime(date.getTime() + (0.1 * 60 * 60 * 1000));
+                        $.cookie('s',1, { path: '/', expires: date });
                     }
                 }
-            },
-            map: {
-                options: {
-                    zoom: 15
+                new $.zui.Messager(data.message, {
+                    icon: 'heart',
+                    placement: 'center' // 定义显示位置
+                }).show();
+                if(data.r!='100'){
+                    verfy_code.src=verfy_code.src+'?'+Math.random()
                 }
-            }
+                if(data.r=='100'){
+                    location.href="{:url('adminstation/main/index')}";
+                }
+            },'json');
         });
-
     });
 </script>
 </body>
