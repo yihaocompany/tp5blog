@@ -1,7 +1,9 @@
 <?php
 namespace app\index\controller;
-
-
+//use app\common\model\Students;
+use app\common\model\Blogtype;
+use think\Db;
+use think\Model;
 class Index extends  \app\common\controller\Base
 {
     public function _initialize()
@@ -11,6 +13,31 @@ class Index extends  \app\common\controller\Base
 
     public function index()
     {
+       // M('configs')
+       // $User = \think\Loader::model('Students','','mysql://root:asd123@localhost/study#utf8');
+        //dump($User->select());
+       // $newlist=Db::query('select * from configs');
+       // dump($newlist);
+       /* Db::execute('TRUNCATE blogtype');
+        $model=model('blogtype');*/
+      /*  $mo=$model->where('id=2')->find();
+        $mo->name='php';
+        $mo->save();
+
+        exit;*/
+      //  echo $model->where('id=1')->delete();
+    /*    $data['name']='react native';
+        $data['topid']=2;
+        $model->save($data);
+        $list=$model->select();
+        dump($list);
+        exit;*/
+
+
+      /*  $model = \think\Loader::model('blogtype');
+        dump($model->select());
+        exit;*/
+
         return $this->fetch('index');
     }
 }

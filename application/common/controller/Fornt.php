@@ -8,9 +8,7 @@
 // +----------------------------------------------------------------------
 
 namespace app\common\controller;
-
 class Fornt extends Base {
-
 	public function _initialize() {
 		parent::_initialize();
 		//判读是否为关闭网站

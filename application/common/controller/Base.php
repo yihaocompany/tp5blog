@@ -17,17 +17,15 @@ class Base extends \think\Controller {
 	protected $request;
 	protected $module;
 	protected $controller;
-	protected $action
-    ;
+	protected $action;
 
 	public function _initialize() {
 		/* 读取数据库中的配置 */
-        cache('db_config_data',null);
+        cache('db_config_data',null);//cache thinkphpHelper
 		$config = cache('db_config_data');
 		if (!$config) {
 		    $model=model('Configs');
-            $list = $model
-                ->select();
+            $list = $model->select();
             foreach ($list as $item){
                 $arr[$item['name']]=$item['value'];
             }
@@ -35,8 +33,10 @@ class Base extends \think\Controller {
             $config=cache('db_config_data');
 		}
 
+        $this->assign($config);
 
-        $this->assign(config($config));
+
+        $this->assign(array('link'=>$config));
 		//获取request信息
 		//$this->requestInfo();
 	}
@@ -57,68 +57,11 @@ class Base extends \think\Controller {
 			$this->error('没有指定插件名称，控制器或操作！');
 		}
 	}
-	/**
-	 * 解析数据库语句函数
-	 * @param string $sql  sql语句   带默认前缀的
-	 * @param string $tablepre  自己的前缀
-	 * @return multitype:string 返回最终需要的sql语句
-	 */
-	public function sqlSplit($sql, $tablepre) {
-		if ($tablepre != "sent_") {
-			$sql = str_replace("sent_", $tablepre, $sql);
-		}
 
-		$sql = preg_replace("/TYPE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/", "ENGINE=\\1 DEFAULT CHARSET=utf8", $sql);
-
-		if ($r_tablepre != $s_tablepre) {
-			$sql          = str_replace($s_tablepre, $r_tablepre, $sql);
-			$sql          = str_replace("\r", "\n", $sql);
-			$ret          = array();
-			$num          = 0;
-			$queriesarray = explode(";\n", trim($sql));
-			unset($sql);
-			foreach ($queriesarray as $query) {
-				$ret[$num] = '';
-				$queries   = explode("\n", trim($query));
-				$queries   = array_filter($queries);
-				foreach ($queries as $query) {
-					$str1 = substr($query, 0, 1);
-					if ($str1 != '#' && $str1 != '-') {
-						$ret[$num] .= $query;
-					}
-
-				}
-				$num++;
-			}
-		}
-		return $ret;
-	}
-	protected function setSeo($title = '', $keywords = '', $description = '') {
-		$seo = array(
-			'title'       => $title,
-			'keywords'    => $keywords,
-			'description' => $description,
-		);
-		//获取还没有经过变量替换的META信息
-		$meta = model('SeoRule')->getMetaOfCurrentPage($seo);
-		foreach ($seo as $key => $item) {
-			if (is_array($item)) {
-				$item = implode(',', $item);
-			}
-			$meta[$key] = str_replace("[" . $key . "]", $item . '|', $meta[$key]);
-		}
-
-		$data = array(
-			'title'       => $meta['title'],
-			'keywords'    => $meta['keywords'],
-			'description' => $meta['description'],
-		);
-		$this->assign($data);
-	}
 	/**
 	 * 验证码
 	 * @param  integer $id 验证码ID
-	 * @author 郭平平 <molong@aiyi.info>
+	 * @author 王海滨 <wellfuture@aiyi.info>
 	 */
 	public function verify($id = 1) {
 		$verify = new \org\Verify(array('length' => 4));
@@ -128,7 +71,7 @@ class Base extends \think\Controller {
 	 * 检测验证码
 	 * @param  integer $id 验证码ID
 	 * @return boolean     检测结果
-	 * @author 麦当苗儿 <zuojiazi@vip.qq.com>
+	 *@author 王海滨 <wellfuture@aiyi.info>
 	 */
 	public function checkVerify($code, $id = 1) {
 		if ($code) {

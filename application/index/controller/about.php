@@ -11,6 +11,6 @@ class About extends  \app\common\controller\Base
 
     public function index()
     {
-        return $this->fetch('index');
+        return $this->fetch();
     }
 }
