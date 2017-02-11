@@ -12,13 +12,11 @@ use think\Db;
 use think\Model;
 
 class Base extends \think\Controller {
-
 	protected $url;
 	protected $request;
 	protected $module;
 	protected $controller;
 	protected $action;
-
 	public function _initialize() {
 		/* 读取数据库中的配置 */
         cache('db_config_data',null);//cache thinkphpHelper
@@ -32,10 +30,7 @@ class Base extends \think\Controller {
 			cache('db_config_data', $arr);
             $config=cache('db_config_data');
 		}
-
         $this->assign($config);
-
-
         $this->assign(array('link'=>$config));
 		//获取request信息
 		//$this->requestInfo();

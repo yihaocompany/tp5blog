@@ -1,80 +1,44 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>{$site_title}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+    <link href="/static/admin/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+
+    <link href="/static/admin/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="/static/admin/css/font-awesome.css" rel="stylesheet">
+
     <link rel="stylesheet" href="//cdn.bootcss.com/zui/1.5.0/css/zui.min.css">
     <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
-    <!--  <link rel="stylesheet" href="/static/admin/css/style.css"> -->
-    <link rel="stylesheet" href="/static/admin/css/loader-style.css">
-    <link rel="stylesheet" href="/static/admin/css/bootstrap.css">
-    <link rel="stylesheet" href="/static/admin/css/signin.css">
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://ajax.useso.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!-- Fav and touch icons -->
-    <link rel="shortcut icon" href="/static/admin/ico/minus.png">
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script
+
+    <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/admin/js/bootstrap.min.js"></script>
 </head>
-<body>
-<!-- Preloader -->
-<div id="preloader">
-    <div id="status">&nbsp;</div>
+<body id="login">
+<div class="login-logo">
+    <a href="index.html"></a>
 </div>
-<div class="container">
-    <div class="" id="login-wrapper">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div id="logo-login">
-                    <h1>{$site_title}
-                    </h1>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="account-box">
-                    <form role="form" action="{:url('adminstation/index/index')}" method="post">
-                        <table width="100%">
-                            <tr><td>   <label for="inputUsernameEmail">用户名</label></td></tr>
-                            <tr><td>   <input type="text" id="inputUsernameEmail" name="user" class="form-control"></td></tr>
-                            <tr><td>   <label for="inputPassword">密码</label></td></tr>
-                            <tr><td>   <input type="password" id="inputPassword" name='pass' class="form-control"></td></tr>
-                            <tr><td>   <label for="inputPassword">验证</label></td></tr>
-                            <tr><td>   <input type="text" id="code" name='code' class="form-control"></td></tr>
-                            <tr><td align="right"> <img  src="{:captcha_src('admin')}"  id='verfy_code' alt="验证码" onclick="this.src=this.src+'?'+Math.random()" /></td></tr>
-                        </table>
-                        <input class="btn btn btn-primary pull-right" name="mysubmit" id="mysubmit" type="button" value="登 录">
-                        </input>
-                    </form>
-
-                    <div class="row-block">
-                        <div class="row">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <p>&nbsp;</p>
-    <div style="text-align:center;margin:0 auto;">
-        <h6 style="color:#fff;">Copyright(C)2017 {$site_title} All Rights Reserved<br />
-            {$site_title}</h6>
-    </div>
+<h2 class="form-heading">{$site_title} </h2>
+<div class="app-cam">
+    <form>
+        <input type="text" class="text" id='inputUsernameEmail' value="输入用户名" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '输入用户名';}">
+        <input type="password" value="Password" id='inputPassword' onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '输入密码';}">
+        <input type="text" class="text" id="code" name='code' value="输入验证码" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '输入验证码';}">
+        <img  src="{:captcha_src('admin')}"  id='verfy_code' alt="验证码" onclick="this.src=this.src+'?'+Math.random()" />
+        <div class="submit"><input type="button"  class="mysubmit" id="mysubmit" value="Login"></div>
+    </form>
 </div>
-<div id="test1" class="gmap3"></div>
-<!--  END OF PAPER WRAP -->
-<!-- MAIN EFFECT -->
-<script type="text/javascript" src="/static/admin/js/preloader.js"></script>
-<script type="text/javascript" src="/static/admin/js/bootstrap.js"></script>
-<script type="text/javascript" src="/static/admin/js/app.js"></script>
-<script type="text/javascript" src="/static/admin/js/load.js"></script>
-<script type="text/javascript" src="/static/admin/js/main.js"></script>
+<div class="copy_layout login">
+    <p>Copyright &copy; 2015.{$site_title}  All rights reserved.</p>
+</div>
 <script type="text/javascript" src="/static/js/zui.js"></script>
 <script type="text/javascript">
     $(function(){
@@ -84,10 +48,12 @@
                 placement: 'center' // 定义显示位置
             }).show();
             $('#mysubmit').attr('disabled','true');
-
         }
         $('#mysubmit').bind('click',function () {
-            $.post("{:url('adminstation/index/index')}",{'mysubmit':'登 录','user':$('#inputUsernameEmail').val(),'pass':$('#inputPassword').val(),'code':$('#code').val()},function(data){
+            var postdata={'mysubmit':'Login','user':$('#inputUsernameEmail').val(),'pass':$('#inputPassword').val(),'code':$('#code').val()};
+          /*    window.open("{:url('adminstation/index/index')}"+"?mysubmit=Login&user="+$('#inputUsernameEmail').val()+"&pass="+$('#inputPassword').val()+'&code='+$('#code').val());
+             return;*/
+            $.post("{:url('adminstation/index/index')}",postdata,function(data){
                 if(data.r=='2'){
                     if($.cookie('s')) {
                         if( $.cookie('s')>=4){
@@ -114,7 +80,7 @@
                     verfy_code.src=verfy_code.src+'?'+Math.random()
                 }
                 if(data.r=='100'){
-                    location.href="{:url('adminstation/main/index')}";
+                    location.href="{:url('adminstation/config/index')}";
                 }
             },'json');
         });
@@ -122,3 +88,5 @@
 </script>
 </body>
 </html>
+
+
